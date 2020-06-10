@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const socket = require("socket.io");
 
+const PORT = process.env.PORT || 3030;
+
 dotenv.config();
 
 mongoose.connect(
@@ -29,8 +31,11 @@ app.use("/api/user", userRoutes);
 
 // front end app path
 app.use(express.static("public"));
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static("public"));
+// }
 
-const server = app.listen(3030, () => {
+const server = app.listen(PORT, () => {
   console.log(`App listening on port 3030`);
 });
 
